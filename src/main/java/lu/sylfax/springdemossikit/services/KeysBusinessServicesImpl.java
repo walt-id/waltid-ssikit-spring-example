@@ -5,6 +5,8 @@ import id.walt.crypto.KeyAlgorithm;
 import id.walt.crypto.KeyId;
 import id.walt.servicematrix.ServiceMatrix;
 import id.walt.services.key.KeyService;
+import lu.sylfax.springdemossikit.vo.output.KeyAliasOutputVO;
+import lu.sylfax.springdemossikit.vo.output.KeyOutputVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,16 +34,29 @@ public class KeysBusinessServicesImpl implements KeysBusinessServices {
     }
 
     @Override
-    public KeyId generateKey(String keyAlgorithm) {
+    public KeyAliasOutputVO generateKey(String keyAlgorithm) {
         logger.info("Generating key ...");
         KeyId keyId = keyService.generate(KeyAlgorithm.valueOf(keyAlgorithm));
-        return keyId;
+        KeyAliasOutputVO keyAliasOutputVO = new KeyAliasOutputVO();
+        keyAliasOutputVO.setId(keyId.getId());
+        return keyAliasOutputVO;
     }
 
     @Override
-    public List<Key> getAllStoredKeys() {
+    public List<KeyAliasOutputVO> getAllStoredKeysAlias() {
         logger.info("Getting all stored keys");
         List<Key> keys = keyService.listKeys();
-        return keys;
+        List<KeyAliasOutputVO> keyAliasOutputVOList = new ArrayList<>();
+        for (Key key: keys) {
+            KeyAliasOutputVO keyAliasOutputVO = new KeyAliasOutputVO();
+            keyAliasOutputVO.setId(key.getKeyId().getId());
+            keyAliasOutputVOList.add(keyAliasOutputVO);
+        }
+        return keyAliasOutputVOList;
+    }
+
+    @Override
+    public KeyOutputVO getKeyByAlias(String alias) {
+        return null;
     }
 }
