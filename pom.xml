@@ -24,16 +24,6 @@
         </repository>
 
         <repository>
-            <id>bintray</id>
-            <url>https://jcenter.bintray.com</url>
-        </repository>
-
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-
-        <repository>
             <id>waltid</id>
             <url>https://maven.walt.id/repository/waltid/</url>
         </repository>
@@ -41,16 +31,6 @@
         <repository>
             <id>waltid-ssi-kit</id>
             <url>https://maven.walt.id/repository/waltid-ssi-kit/</url>
-        </repository>
-
-        <repository>
-            <id>danubetech</id>
-            <url>https://repo.danubetech.com/repository/maven-public/</url>
-        </repository>
-
-        <repository>
-            <id>waltid-dt-bak</id>
-            <url>https://maven.walt.id/repository/danubetech</url>
         </repository>
     </repositories>
 
